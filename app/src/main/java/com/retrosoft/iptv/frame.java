@@ -28,15 +28,27 @@ public class frame extends AppCompatActivity {
 
                 if(id==R.id.nav_home){
 
-                    loadFrg(new home_Fragment(),false);
+                    loadFrg(new home_Fragment(),true);
+
+                }
+                else if (id==R.id.nav_player){
+                    loadFrg(new Player_Fragment(),false);
+
+                }
+                else if (id==R.id.nav_fav){
+                    loadFrg(new Favorites_Fragment(),false);
+
+                }
+                else {
+                    loadFrg(new Setting_Fragment(),false);
 
                 }
 
-
-
                 return true;
             }
+
         });
+        btNav.setSelectedItemId(R.id.nav_home);
     }
     public  void loadFrg (Fragment fragment, boolean flag){
         FragmentManager frgM = getSupportFragmentManager();
