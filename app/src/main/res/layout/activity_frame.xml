@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".frame"
+    android:orientation="vertical"
+    android:background="@drawable/back_colour"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+
+            <ImageView
+                android:id="@+id/add_btn"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/add_icon"/>
+            <ImageView
+                android:id="@+id/ref_btn"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/refresh_icon"/>
+            <ImageView
+                android:id="@+id/hphone_btn"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="90dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/headphone_icon"/>
+
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/FrmLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="?attr/actionBarSize"
+        />
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/btm_nav"
+        app:menu="@menu/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="60dp"
+        android:background="@drawable/bottom_custom_design"
+        android:layout_alignParentBottom="true"/>
+
+
+
+
+
+
+
+
+</RelativeLayout>
