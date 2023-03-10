@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.retrosoft.iptv'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.retrosoft.iptv"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -36,4 +36,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.4'
+
+
 }
