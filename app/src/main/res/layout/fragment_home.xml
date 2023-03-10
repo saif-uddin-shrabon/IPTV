@@ -46,39 +46,66 @@
         android:gravity="center"
         >
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/add_list_icon"/>
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:text="NO PLAYLIST SELECTED"
+        <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="RtlCompat" />
-        <TextView
-            android:layout_marginTop="20dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:gravity="center"
-            android:textSize="15dp"
-            android:textColor="@color/white"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/add_list_icon"/>
 
-            android:text="tap + icon or select the button below \n to add or select a player"
+            <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="NO PLAYLIST SELECTED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="RtlCompat" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+
+                android:text="tap + icon or select the button below \n to add or select a player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="RtlCompat" />
+
+
+            <android.widget.Button
+                android:background="@drawable/add_button_style"
+                android:text="ADD OR SELECT PLAYLIST"
+                android:layout_marginTop="20dp"
+                android:layout_width="260dp"
+                android:layout_height="35dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="RtlCompat" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
+            <Button
+                android:id="@+id/cnl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="channel 1"/>
+            <Button
+                android:id="@+id/cnl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="channel 2"/>
 
-        <android.widget.Button
-            android:background="@drawable/add_button_style"
-            android:text="ADD OR SELECT PLAYLIST"
-            android:layout_marginTop="20dp"
-            android:layout_width="260dp"
-            android:layout_height="35dp"/>
+        </LinearLayout>
 
 
 
