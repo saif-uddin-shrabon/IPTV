@@ -88,7 +88,7 @@
                 android:layout_height="35dp"/>
         </LinearLayout>
         <LinearLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -104,6 +104,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="channel 2"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <GridView
+                android:id="@+id/gribView"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="3"/>
 
         </LinearLayout>
 
