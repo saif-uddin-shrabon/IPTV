@@ -19,6 +19,7 @@
         app:surface_type="surface_view"
         app:shutter_background_color="#000000"
         app:use_controller="true"
+        app:show_buffering="always"
         android:keepScreenOn="true"
         />
 
