@@ -1,6 +1,7 @@
 package com.retrosoft.iptv;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +9,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 
 public class home_Fragment extends Fragment {
     Button  btn1,btn2;
-
+    RecyclerView recyclerView;
+    ArrayList<model> dataholder;
 
 
     @Override
@@ -21,34 +27,51 @@ public class home_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        btn1 = view.findViewById(R.id.cnl1);
-        btn2 = view.findViewById(R.id.cnl2);
+        recyclerView = view.findViewById(R.id.recview);
+        int numberOfColumns = 2;
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),numberOfColumns));
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Cursor cursor = new dbmanager(getContext()).readAllData();
 
-                go("https://6n3yogbnd9ok-hls-live.5centscdn.com/threetamil/d0dbe915091d400bd8ee7f27f0791303.sdp/index.m3u8");
+        dataholder = new ArrayList<>(); // Initialize the ArrayList before adding data to it
 
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        while (cursor.moveToNext()){
+            model obj =  new model(cursor.getString(1),cursor.getString(2),cursor.getString(3));
+            dataholder.add(obj);
+        }
 
-                go("https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index.m3u8");
+        myadapter adapter= new myadapter(dataholder);
+        recyclerView.setAdapter(adapter);
 
-            }
-        });
+
+//        btn1 = view.findViewById(R.id.cnl1);
+//        btn2 = view.findViewById(R.id.cnl2);
+
+//        btn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                go("https://v4.tustreaming.cl/tevexinter/index.m3u8");
+//
+//            }
+//        });
+//        btn2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                go("https://ndtvprofitelemarchana.akamaized.net/hls/live/2003680-b/ndtvprofit/master.m3u8");
+//
+//            }
+//        });
 
         return view;
     }
 
-    private void go(String url){
-
-
-        Player.websiteUri = url;
-        startActivity(new Intent(getContext(),Player.class));
-
-    }
+//    private void go(String url){
+//
+//
+//        Player.websiteUri = url;
+//        startActivity(new Intent(getContext(),Player.class));
+//
+//    }
 }

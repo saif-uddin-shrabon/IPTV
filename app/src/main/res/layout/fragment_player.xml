@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             tools:ignore="RtlCompat" />
         <EditText
+            android:id="@+id/url"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
@@ -55,6 +56,7 @@
             android:layout_height="wrap_content"
             tools:ignore="RtlCompat" />
         <EditText
+            android:id="@+id/channelrf"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
@@ -63,6 +65,7 @@
             />
 
         <android.widget.Button
+            android:id="@+id/playerbtn"
             android:background="@drawable/play_button_style"
             android:text="Play"
             android:textColor="@color/white"
@@ -71,6 +74,14 @@
             android:layout_height="35dp"/>
 
 
+        <android.widget.Button
+            android:id="@+id/delete_all"
+            android:background="@drawable/play_button_style"
+            android:text="Delete Data"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_width="80dp"
+            android:layout_height="35dp"/>
 
 
 

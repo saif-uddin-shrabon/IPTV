@@ -94,16 +94,24 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/cnl1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="channel 1"/>
-            <Button
-                android:id="@+id/cnl2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="channel 2"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginStart="5dp"
+                android:id="@+id/recview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+<!--            <Button-->
+<!--                android:id="@+id/cnl1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="channel 1"/>-->
+<!--            <Button-->
+<!--                android:id="@+id/cnl2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="channel 2"/>-->
 
         </LinearLayout>
         <LinearLayout
