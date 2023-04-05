@@ -28,7 +28,7 @@ public class home_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         recyclerView = view.findViewById(R.id.recview);
-        int numberOfColumns = 2;
+        int numberOfColumns = 4;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),numberOfColumns));
 
         Cursor cursor = new dbmanager(getContext()).readAllData();
