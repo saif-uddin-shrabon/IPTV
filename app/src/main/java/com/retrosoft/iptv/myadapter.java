@@ -46,9 +46,10 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
         String logoLInk = dataholder.get(position).getCOLUMN_LOGO();
         System.out.println("LOGO_link : "+logoLInk);
 //        Glide.with(holder.clogo.getContext()).load(dataholder.get(position).getCOLUMN_LOGO()).into(holder.clogo);
+
         Glide.with(holder.clogo.getContext()).load(dataholder.get(position).getCOLUMN_LOGO())
                 .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                .error(R.drawable.demo_logo)
+                .error(R.drawable.cnlloading)
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -83,6 +84,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
 
         TextView cname,clink;
         ImageView clogo;
+
         View viewLayout;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
