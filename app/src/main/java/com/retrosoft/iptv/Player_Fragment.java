@@ -89,6 +89,7 @@ public class Player_Fragment extends Fragment {
 
                 while ((line = reader.readLine()) != null) {
                     line = line.replaceAll("\"", "");
+
                     if (line.startsWith(KOD_IP_DROP_TYPE)) {
                         currentChannel.put("channelDrmType", line.split(KOD_IP_DROP_TYPE)[1].trim());
 
@@ -96,19 +97,44 @@ public class Player_Fragment extends Fragment {
                         currentChannel.put("channelDrmKey", line.split(KOD_IP_DROP_KEY)[1].trim());
 
                     } else if (line.startsWith(EXT_INF_SP)) {
-                        currentChannel.put("name", line.split(TVG_NAME).length > 1 ?
-                                line.split(TVG_NAME)[1].split(TVG_LOGO)[0] :
-                                line.split(COMMA)[1]);
+                        String[] parts = line.split(COMMA, 2);
+                        if (parts.length > 1) {
+                            String name = parts[1];
+                            if (name.contains(TVG_NAME)) {
+                                name = name.split(TVG_NAME)[1].split(TVG_LOGO)[0];
+                            }
+                            currentChannel.put("name", name);
+                        }
 
-                        currentChannel.put("channelGroup", line.split(GROUP_TITLE)[1].split(COMMA)[0]);
-                        currentChannel.put("logo", line.split(TVG_LOGO).length > 1 ?
-                                line.split(TVG_LOGO)[1].split(GROUP_TITLE)[0] : "");
+                        if (line.contains(GROUP_TITLE)) {
+                            String groupTitle = line.split(GROUP_TITLE)[1].split(COMMA)[0];
+                            currentChannel.put("channelGroup", groupTitle);
+                        }
 
-                    }else if (line.startsWith(HTTP) || line.startsWith(HTTPS)) {
+
+
+                        if (line.contains(TVG_LOGO)) {
+                            String logo = line.split(TVG_LOGO)[1].split(COMMA)[0];
+                            currentChannel.put("logo", logo);
+                        }
+                    }
+//---------------------------------------------------------------------------------------
+//                    else if (line.startsWith(EXT_INF_SP)) {
+//                        currentChannel.put("name", line.split(TVG_NAME).length > 1 ?
+//                                line.split(TVG_NAME)[1].split(TVG_LOGO)[0] :
+//                                line.split(COMMA)[1]);
+//
+//                        currentChannel.put("channelGroup", line.split(GROUP_TITLE)[1].split(COMMA)[0]);
+//                        currentChannel.put("logo", line.split(TVG_LOGO).length > 1 ?
+//                                line.split(TVG_LOGO)[1].split(GROUP_TITLE)[0] : "");
+//
+//                    }
+                    else if (line.startsWith(HTTP) || line.startsWith(HTTPS)) {
                         currentChannel.put("url", line);
                         channels.add(currentChannel);
                         currentChannel = new HashMap<>();
                     }
+
 
                 }
 
@@ -133,7 +159,8 @@ public class Player_Fragment extends Fragment {
                 conn.disconnect();
 
             } catch (IOException e) {
-                throw new RuntimeException(e);
+//                throw new RuntimeException(e);
+                Toast.makeText(getContext(), "test", Toast.LENGTH_SHORT).show();
             }
 
             return channels;

@@ -74,7 +74,7 @@ public class dbmanager extends SQLiteOpenHelper {
 
     public Cursor readAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + dbtable + " ORDER BY " + COLUMN_ID + " DESC";
+        String query = "SELECT * FROM " + dbtable + " ORDER BY " + COLUMN_ID + " ASC";
         return db.rawQuery(query, null);
     }
 
