@@ -59,6 +59,9 @@
             android:layout_height="wrap_content"
             tools:ignore="RtlCompat" />
         <EditText
+            android:textColor="@color/white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:id="@+id/channelrf"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
