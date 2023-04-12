@@ -1,5 +1,6 @@
 package com.retrosoft.iptv;
 
+import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,6 +41,11 @@ public class Player_Fragment extends Fragment {
     EditText inputUrl,inputRfrl;
     Button btnPlay,btnDelete;
 
+    Dialog myDialog;
+
+    FloatingActionButton floatingActionButton;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,6 +55,17 @@ public class Player_Fragment extends Fragment {
         inputRfrl = view.findViewById(R.id.channelrf);
         btnPlay = view.findViewById(R.id.playerbtn);
         btnDelete = view.findViewById(R.id.delete_all);
+        floatingActionButton = view.findViewById(R.id.flotingBtn);
+
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDialog = new Dialog(getActivity());
+                myDialog.setContentView(R.layout.link_gateway);
+                myDialog.show();
+            }
+        });
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override

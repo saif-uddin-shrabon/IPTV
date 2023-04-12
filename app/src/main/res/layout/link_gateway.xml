@@ -1,486 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="530dp"
+    android:layout_width="350dp"
+    android:layout_height="280dp"
+    android:layout_gravity="center"
     >
 
     <LinearLayout
-        android:background="#e2146f"
+        android:gravity="center"
+        android:background="#52033a"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:background="#e2146f"
-            android:layout_width="match_parent"
-            android:layout_height="100dp">
-            <ImageView
-                android:layout_marginBottom="5dp"
-                android:background="@color/white"
-                android:padding="13dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/bkash_payment_logo"/>
-
-        </LinearLayout>
-
-
-        <!--        header part-->
-        <LinearLayout
-            android:visibility="visible"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:weightSum="10"
-                android:orientation="horizontal"
-                android:layout_margin="5dp"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-                <LinearLayout
-                    android:layout_weight="2.8"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                    <ImageView
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/police"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2.7"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="BD Police"
-                        android:textSize="15dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:layout_marginLeft="10dp"
-                        android:text="Invoice:"
-                        android:textSize="15dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_weight="2.3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                    <TextView
-                        android:layout_marginTop="40dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="123456789102355"
-                        android:textSize="15dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_weight="2.2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    >
-                    <TextView
-
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:text="৳1030.00"
-                        android:textSize="20dp"/>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
-
-
-                <!--   Daynamic part 0-->
-
-                <LinearLayout
-                    android:id="@+id/firstpase"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Your bKash Account number"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        android:textAlignment="center"
-                        android:layout_marginTop="50dp"/>
-                    <EditText
-                        android:id="@+id/bkashnumber"
-                        android:inputType="text"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/search_view_bg2"
-                        android:backgroundTint="@color/white"
-                        android:textColor="@color/black"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="50dp"
-                        android:hint="Enter bKash number"
-                        android:textAlignment="center"
-                        android:textColorHint="#AA8F8F"
-                        android:textSize="22dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="By clicking Confirm, you are agreeing to the terms &amp; conditions"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="13dp" />
-
-                    <LinearLayout
-                        android:layout_marginTop="57dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:background="#bcbcbc"
-                        >
-                        <LinearLayout
-                            android:id="@+id/paymentClose_pin1"
-                            android:layout_marginRight="2dp"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#d3d2d5"
-                            >
-                            <TextView
-                                android:layout_gravity="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="CLOSE"
-                                android:textColor="@color/white"
-                                android:textSize="15dp"
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/paymentConfirm_pin1"
-                            android:layout_marginLeft="2dp"
-                            android:background="#d3d2d5"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <TextView
-                                android:layout_gravity="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="CONFIRM"
-                                android:textColor="@color/black"
-                                android:textSize="15dp"
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                />
-
-                        </LinearLayout>
-
-
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-                <!--            Daynamic part 1-->
-                <LinearLayout
-                    android:id="@+id/secpase"
-                    android:visibility="gone"
-                    android:layout_marginTop="40dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Enter OTP code"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        android:textAlignment="center"
-                        android:layout_marginTop="50dp"/>
-                    <EditText
-                        android:id="@+id/Otpnumber"
-                        android:inputType="numberPassword"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/search_view_bg2"
-                        android:backgroundTint="@color/white"
-                        android:textColor="@color/black"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="50dp"
-                        android:hint="Enter OTP"
-                        android:textAlignment="center"
-                        android:textColorHint="#AA8F8F"
-                        android:textSize="22dp"/>
-
-                    <LinearLayout
-                        android:layout_marginTop="54dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:background="#bcbcbc"
-                        >
-                        <LinearLayout
-                            android:id="@+id/paymentClose_pin2"
-                            android:layout_marginRight="2dp"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#d3d2d5"
-                            >
-                            <TextView
-                                android:layout_gravity="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="CLOSE"
-                                android:textColor="@color/white"
-                                android:textSize="15dp"
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/paymentConfirm_pin2"
-                            android:layout_marginLeft="2dp"
-                            android:background="#d3d2d5"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <TextView
-                                android:layout_gravity="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="CONFIRM"
-                                android:textColor="@color/black"
-                                android:textSize="15dp"
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                />
-
-                        </LinearLayout>
-
-
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-                <!--            Daynamic part 2-->
-                <LinearLayout
-                    android:id="@+id/thirdpase"
-                    android:visibility="gone"
-                    android:layout_marginTop="25dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Enter your bKash pin number"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        android:textAlignment="center"
-                        android:layout_marginTop="50dp"/>
-                    <EditText
-                        android:id="@+id/pinNumber"
-                        android:inputType="numberPassword"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/search_view_bg2"
-                        android:backgroundTint="@color/white"
-                        android:textColor="@color/black"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="50dp"
-                        android:hint="Enter pin numbre"
-                        android:textAlignment="center"
-                        android:textColorHint="#AA8F8F"
-                        android:textSize="22dp"/>
-                    <LinearLayout
-                        android:layout_marginTop="69dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:background="#bcbcbc"
-                        >
-                        <LinearLayout
-                            android:id="@+id/paymentClose_pin3"
-                            android:layout_marginRight="2dp"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#d3d2d5"
-                            >
-                            <TextView
-                                android:layout_gravity="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="CLOSE"
-                                android:textColor="@color/white"
-                                android:textSize="15dp"
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/paymentConfirm_pin3"
-                            android:layout_marginLeft="2dp"
-                            android:background="#d3d2d5"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <TextView
-                                android:layout_gravity="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="CONFIRM"
-                                android:textColor="@color/black"
-                                android:textSize="15dp"
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-
-        </LinearLayout>
-
-
-        <!--            lastpart -->
-
-        <LinearLayout
-
-            android:id="@+id/paymentverified"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="340dp"
-                android:orientation="vertical"
-                >
-
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/right"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="#FFFFFF"
-                    android:text="Payment Successful"
-                    android:textSize="30dp"
-                    android:textAlignment="center"/>
-
-
-                <LinearLayout
-                    android:id="@+id/paymentClose_confirmend"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="#d3d2d5"
-                    >
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="CLOSE"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        android:textAlignment="center"
-                        android:textStyle="bold"
-                        />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-        <!--        bottom-->
-        <LinearLayout
+            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:background="@color/white"
-            >
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/bphone"
-                android:layout_marginRight="10dp"
-                />
+            android:text="Paste or type the URL of the file"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            />
 
-            <TextView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="16247"
-                android:textColor="#e2146f"
-                android:textSize="25dp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/url"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/search_custom_style"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Referrer(Optional)"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            />
+
+        <EditText
+            android:id="@+id/channelrf"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/search_custom_style"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white" />
+
+        <android.widget.Button
+            android:id="@+id/playerbtn"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/play_button_style"
+            android:text="Add"
+            android:textColor="@color/white" />
 
 
 
