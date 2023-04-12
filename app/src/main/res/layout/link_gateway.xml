@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="280dp"
+    android:layout_gravity="center"
+    >
+
+    <LinearLayout
+        android:gravity="center"
+        android:background="#52033a"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Paste or type the URL of the file"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            />
+
+        <EditText
+            android:id="@+id/url"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/search_custom_style"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Referrer(Optional)"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            />
+
+        <EditText
+            android:id="@+id/channelrf"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/search_custom_style"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white" />
+
+        <android.widget.Button
+            android:id="@+id/playerbtn"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/play_button_style"
+            android:text="Add"
+            android:textColor="@color/white" />
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
