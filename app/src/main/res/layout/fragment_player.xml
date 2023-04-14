@@ -39,6 +39,7 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -47,70 +48,6 @@
             android:layout_marginBottom="10dp">
 
         </androidx.recyclerview.widget.RecyclerView>
-
-
-
-
-        <TextView
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Paste or type the URL of the file"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="RtlCompat" />
-        <EditText
-            android:textColor="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:id="@+id/url"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/search_custom_style"
-            />
-        <TextView
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Referrer(Optional)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="RtlCompat" />
-        <EditText
-            android:textColor="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:id="@+id/channelrf"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/search_custom_style"
-            />
-
-        <android.widget.Button
-            android:id="@+id/playerbtn"
-            android:background="@drawable/play_button_style"
-            android:text="Play"
-            android:textColor="@color/white"
-            android:layout_marginTop="20dp"
-            android:layout_width="80dp"
-            android:layout_height="35dp"/>
-
-
-        <android.widget.Button
-            android:id="@+id/delete_all"
-            android:background="@drawable/play_button_style"
-            android:text="Delete Data"
-            android:textColor="@color/white"
-            android:layout_marginTop="20dp"
-            android:layout_width="80dp"
-            android:layout_height="35dp"/>
-
 
 
 

@@ -78,6 +78,13 @@ public class dbmanager extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+//    public  Cursor readColumData(){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String[] columns = new String[] {COLUMN_LINK};
+//        String orderBy = COLUMN_ID + " ASC";
+//        return db.query(dbtable, columns, null, null, null, null, orderBy);
+//    }
+
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(dbtable, null, null);

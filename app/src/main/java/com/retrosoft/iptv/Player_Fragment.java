@@ -1,6 +1,7 @@
 package com.retrosoft.iptv;
 
 import android.app.Dialog;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.constraintlayout.solver.widgets.Helper;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -24,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import timber.log.Timber;
 
 
 public class Player_Fragment extends Fragment {
@@ -46,15 +52,15 @@ public class Player_Fragment extends Fragment {
     FloatingActionButton floatingActionButton;
 
 
+    RecyclerView recyclerView;
+    ArrayList<model> dataholder;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_player, container, false);
-        inputUrl = view.findViewById(R.id.url);
-        inputRfrl = view.findViewById(R.id.channelrf);
-        btnPlay = view.findViewById(R.id.playerbtn);
-        btnDelete = view.findViewById(R.id.delete_all);
         floatingActionButton = view.findViewById(R.id.flotingBtn);
 
 
@@ -63,25 +69,46 @@ public class Player_Fragment extends Fragment {
             public void onClick(View view) {
                 myDialog = new Dialog(getActivity());
                 myDialog.setContentView(R.layout.link_gateway);
+                btnPlay = myDialog.findViewById(R.id.playerbtn);
+                inputUrl = myDialog.findViewById(R.id.url);
+                inputRfrl = myDialog.findViewById(R.id.channelrf);
+                btnDelete = myDialog.findViewById(R.id.delete_all);
+                btnPlay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String Url = inputUrl.getText().toString().trim();
+//                String chnnel = ch.getText().toString();
+                        new GetChannelsTask().execute(Url);
+                    }
+                });
+
+
+                btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new dbmanager((getContext())).deleteAllData();
+                    }
+                });
                 myDialog.show();
             }
         });
 
-        btnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String Url = inputUrl.getText().toString().trim();
-//                String chnnel = ch.getText().toString();
-                new GetChannelsTask().execute(Url);
-            }
-        });
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new dbmanager((getContext())).deleteAllData();
-            }
-        });
+        recyclerView = view.findViewById(R.id.listview);
+        int numberOfColumns = 1;
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),numberOfColumns));
+
+        Cursor cursor = new dbmanager(getContext()).readAllData();
+
+        dataholder = new ArrayList<>(); // Initialize the ArrayList before adding data to it
+
+        while (cursor.moveToNext()){
+            model obj =  new model(cursor.getString(3),cursor.getString(2),cursor.getString(3));
+            dataholder.add(obj);
+        }
+
+        listadapter adapter= new listadapter(dataholder);
+        recyclerView.setAdapter(adapter);
 
 
         return view;
@@ -137,17 +164,6 @@ public class Player_Fragment extends Fragment {
                             currentChannel.put("logo", logo);
                         }
                     }
-//---------------------------------------------------------------------------------------
-//                    else if (line.startsWith(EXT_INF_SP)) {
-//                        currentChannel.put("name", line.split(TVG_NAME).length > 1 ?
-//                                line.split(TVG_NAME)[1].split(TVG_LOGO)[0] :
-//                                line.split(COMMA)[1]);
-//
-//                        currentChannel.put("channelGroup", line.split(GROUP_TITLE)[1].split(COMMA)[0]);
-//                        currentChannel.put("logo", line.split(TVG_LOGO).length > 1 ?
-//                                line.split(TVG_LOGO)[1].split(GROUP_TITLE)[0] : "");
-//
-//                    }
                     else if (line.startsWith(HTTP) || line.startsWith(HTTPS)) {
                         currentChannel.put("url", line);
                         channels.add(currentChannel);
@@ -157,29 +173,12 @@ public class Player_Fragment extends Fragment {
 
                 }
 
-
-                //old code
-
-//                while ((line = reader.readLine()) != null) {
-//                    line = line.trim();
-//
-//                    if (line.startsWith("#EXTINF:")) {
-//                        String[] info = line.split(",(.+)", 2);
-//                        currentChannel.put("name", info[1]);
-//                        String logo = line.replaceAll(".tvg-logo=\"([^\"])\".*", "$1");
-//                        currentChannel.put("logo", logo);
-//                    } else if (line.startsWith("http")) {
-//                        currentChannel.put("url", line);
-//                        channels.add(currentChannel);
-//                        currentChannel = new HashMap<>();
-//                    }
-//                }
                 reader.close();
                 conn.disconnect();
 
             } catch (IOException e) {
-//                throw new RuntimeException(e);
-                Toast.makeText(getContext(), "test", Toast.LENGTH_SHORT).show();
+                Timber.e(e);
+                Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
 
             return channels;
@@ -196,14 +195,14 @@ public class Player_Fragment extends Fragment {
                 String channelDrmType = channel.get("channelDrmType");
                 String channelDrmKey = channel.get("channelDrmKey");
 
-                String res = String.valueOf(new dbmanager((getContext())).addRecord(name,logo,url));
+                new dbmanager((getContext())).addRecord(name,logo,url);
 
                 Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
 //
-                Toast.makeText(getContext(), res, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), res, Toast.LENGTH_SHORT).show();
             }
 
-//            Log.d("Channels", channels.toString());
+
 
         }
     }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
@@ -39,28 +40,39 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
         holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
-        System.out.println("NameChannel: "+dataholder.get(position).getCOLUMN_NAME());
-//        holder.clogo.setText(dataholder.get(position).getCOLUMN_LOGO());
-//        holder.clink.setText(dataholder.get(position).getCOLUMN_LINK());
-        System.out.println("URLCHANNEL: "+dataholder.get(position).getCOLUMN_LINK());
-        String logoLInk = dataholder.get(position).getCOLUMN_LOGO();
-        System.out.println("LOGO_link : "+logoLInk);
+//        String firstChar = String.valueOf(dataholder.get(position).getCOLUMN_NAME().charAt(0)).trim();
+//        holder.logoName.setText(firstChar);
 //        Glide.with(holder.clogo.getContext()).load(dataholder.get(position).getCOLUMN_LOGO()).into(holder.clogo);
 
-        Glide.with(holder.clogo.getContext()).load(dataholder.get(position).getCOLUMN_LOGO())
-                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+        Glide.with(holder.clogo.getContext())
+                .load(dataholder.get(position).getCOLUMN_LOGO())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.cnlloading)
                 .error(R.drawable.cnlloading)
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        // Handle failure
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        // Image loaded successfully
                         return false;
                     }
-                }).into(holder.clogo);
+                })
+                .into(holder.clogo);
+
+
+//        Glide.with(holder.clogo.getContext())
+//                .load(dataholder.get(position).getCOLUMN_LOGO())
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .placeholder(R.drawable.cnlloading)
+//                .error(R.drawable.cnlloading)
+//                .into(holder.clogo);
+
+
 
         holder.viewLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +94,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
 
     class myviewholder extends RecyclerView.ViewHolder{
 
-        TextView cname,clink;
+        TextView cname,logoName;
         ImageView clogo;
 
         View viewLayout;
@@ -91,7 +103,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
 
             cname =(TextView) itemView.findViewById(R.id.cardName);
             clogo = (ImageView) itemView.findViewById(R.id.viewImage);
-//            clink = (TextView) itemView.findViewById(R.id.cardlink);
+//            logoName = (TextView) itemView.findViewById(R.id.logoname);
             viewLayout = itemView.findViewById(R.id.viewLayout);
 
         }
