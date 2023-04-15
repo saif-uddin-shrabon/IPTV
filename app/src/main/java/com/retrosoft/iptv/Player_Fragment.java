@@ -2,9 +2,9 @@ package com.retrosoft.iptv;
 
 import android.app.Dialog;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.constraintlayout.solver.widgets.Helper;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +52,8 @@ public class Player_Fragment extends Fragment {
 
 
     RecyclerView recyclerView;
-    ArrayList<model> dataholder;
+    ArrayList<TableName> dataholder;
+    String Url;
 
 
     @Override
@@ -76,8 +76,9 @@ public class Player_Fragment extends Fragment {
                 btnPlay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String Url = inputUrl.getText().toString().trim();
-//                String chnnel = ch.getText().toString();
+                        Url = inputUrl.getText().toString().trim();
+                       String channelName = inputRfrl.getText().toString();
+                        new dbmanagert(getContext()).addRecord(channelName,Url);
                         new GetChannelsTask().execute(Url);
                     }
                 });
@@ -87,6 +88,7 @@ public class Player_Fragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         new dbmanager((getContext())).deleteAllData();
+//                        new dbmanagert((getContext())).deleteAllData();
                     }
                 });
                 myDialog.show();
@@ -94,27 +96,37 @@ public class Player_Fragment extends Fragment {
         });
 
 
+
         recyclerView = view.findViewById(R.id.listview);
         int numberOfColumns = 1;
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),numberOfColumns));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
+        Cursor cursor = new dbmanagert(getContext()).readAllData();
 
-        Cursor cursor = new dbmanager(getContext()).readAllData();
-
-        dataholder = new ArrayList<>(); // Initialize the ArrayList before adding data to it
+        dataholder = new ArrayList<TableName>(); // Initialize the ArrayList before adding data to it
 
         while (cursor.moveToNext()){
-            model obj =  new model(cursor.getString(3),cursor.getString(2),cursor.getString(3));
+            TableName obj =  new TableName(cursor.getString(1),cursor.getString(2));
             dataholder.add(obj);
         }
-
-        listadapter adapter= new listadapter(dataholder);
+        listadapter adapter = new listadapter(dataholder);
         recyclerView.setAdapter(adapter);
-
 
         return view;
     }
 
-    private class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, String>>> {
+    public void saveList() {
+        String link = null;
+        // Retrieve the link from the bundle
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            link = bundle.getString("link");
+        }
+
+        // Call the saveList() method
+        new GetChannelsTask().execute(link);
+    }
+
+    public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, String>>> {
 
         @Override
         protected List<Map<String, String>> doInBackground(String... urls) {
@@ -195,9 +207,9 @@ public class Player_Fragment extends Fragment {
                 String channelDrmType = channel.get("channelDrmType");
                 String channelDrmKey = channel.get("channelDrmKey");
 
-                new dbmanager((getContext())).addRecord(name,logo,url);
+                new dbmanager(getContext()).addRecord(name,logo,url);
 
-                Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
+     //           Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
 //
 //                Toast.makeText(getContext(), res, Toast.LENGTH_SHORT).show();
             }

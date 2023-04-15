@@ -9,9 +9,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.util.List;
+
 public class dbmanager extends SQLiteOpenHelper {
 
-    private static final String dbname="channels.db";
+    private static final String dbname="channelList.db";
     private static final String dbtable="ChannelList";
 
 
@@ -90,5 +92,6 @@ public class dbmanager extends SQLiteOpenHelper {
         db.delete(dbtable, null, null);
         Toast.makeText(context, "All data deleted successfully", Toast.LENGTH_SHORT).show();
     }
+
 
 }
