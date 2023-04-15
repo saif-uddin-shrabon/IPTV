@@ -28,6 +28,7 @@ public class dbmanager extends SQLiteOpenHelper {
         this.context = context;
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 

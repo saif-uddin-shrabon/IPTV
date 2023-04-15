@@ -79,9 +79,10 @@ public class Player_Fragment extends Fragment {
                         Url = inputUrl.getText().toString().trim();
                        String channelName = inputRfrl.getText().toString();
                         new dbmanagert(getContext()).addRecord(channelName,Url);
-                        new GetChannelsTask().execute(Url);
+                        new GetChannelsTask(getContext()).execute(Url);
                     }
                 });
+
 
 
                 btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -114,109 +115,110 @@ public class Player_Fragment extends Fragment {
         return view;
     }
 
-    public void saveList() {
-        String link = null;
-        // Retrieve the link from the bundle
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            link = bundle.getString("link");
-        }
-
-        // Call the saveList() method
-        new GetChannelsTask().execute(link);
-    }
-
-    public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, String>>> {
-
-        @Override
-        protected List<Map<String, String>> doInBackground(String... urls) {
-            String urlString = urls[0];
-            List<Map<String, String>> channels = new ArrayList<>();
-            Map<String, String> currentChannel = new HashMap<>();
-
-            try {
-                URL urlObj = new URL(urlString);
-                HttpURLConnection conn = (HttpURLConnection) urlObj.openConnection();
-                conn.setRequestMethod("GET");
-                conn.connect();
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String line;
-
-                //new code
-
-                while ((line = reader.readLine()) != null) {
-                    line = line.replaceAll("\"", "");
-
-                    if (line.startsWith(KOD_IP_DROP_TYPE)) {
-                        currentChannel.put("channelDrmType", line.split(KOD_IP_DROP_TYPE)[1].trim());
-
-                    }else if (line.startsWith(KOD_IP_DROP_KEY)) {
-                        currentChannel.put("channelDrmKey", line.split(KOD_IP_DROP_KEY)[1].trim());
-
-                    } else if (line.startsWith(EXT_INF_SP)) {
-                        String[] parts = line.split(COMMA, 2);
-                        if (parts.length > 1) {
-                            String name = parts[1];
-                            if (name.contains(TVG_NAME)) {
-                                name = name.split(TVG_NAME)[1].split(TVG_LOGO)[0];
-                            }
-                            currentChannel.put("name", name);
-                        }
-
-                        if (line.contains(GROUP_TITLE)) {
-                            String groupTitle = line.split(GROUP_TITLE)[1].split(COMMA)[0];
-                            currentChannel.put("channelGroup", groupTitle);
-                        }
-
-
-
-                        if (line.contains(TVG_LOGO)) {
-                            String logo = line.split(TVG_LOGO)[1].split(COMMA)[0];
-                            currentChannel.put("logo", logo);
-                        }
-                    }
-                    else if (line.startsWith(HTTP) || line.startsWith(HTTPS)) {
-                        currentChannel.put("url", line);
-                        channels.add(currentChannel);
-                        currentChannel = new HashMap<>();
-                    }
-
-
-                }
-
-                reader.close();
-                conn.disconnect();
-
-            } catch (IOException e) {
-                Timber.e(e);
-                Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-            return channels;
-        }
-
-        @Override
-        protected void onPostExecute(List<Map<String, String>> channels) {
-
-            for (Map<String, String> channel : channels) {
-                String name = channel.get("name");
-                String channelGroup = channel.get("channelGroup");
-                String logo = channel.get("logo");
-                String url = channel.get("url");
-                String channelDrmType = channel.get("channelDrmType");
-                String channelDrmKey = channel.get("channelDrmKey");
-
-                new dbmanager(getContext()).addRecord(name,logo,url);
-
-     //           Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
+//    public void saveList() {
+//        String link = null;
+//        // Retrieve the link from the bundle
+//        Bundle bundle = getArguments();
+//        if (bundle != null) {
+//            link = bundle.getString("link");
+//        }
 //
-//                Toast.makeText(getContext(), res, Toast.LENGTH_SHORT).show();
-            }
+//        // Call the saveList() method
+//       new GetChannelsTask().execute(link);
+//
+//    }
 
-
-
-        }
-    }
+//    public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, String>>> {
+//
+//        @Override
+//        protected List<Map<String, String>> doInBackground(String... urls) {
+//            String urlString = urls[0];
+//            List<Map<String, String>> channels = new ArrayList<>();
+//            Map<String, String> currentChannel = new HashMap<>();
+//
+//            try {
+//                URL urlObj = new URL(urlString);
+//                HttpURLConnection conn = (HttpURLConnection) urlObj.openConnection();
+//                conn.setRequestMethod("GET");
+//                conn.connect();
+//
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//                String line;
+//
+//                //new code
+//
+//                while ((line = reader.readLine()) != null) {
+//                    line = line.replaceAll("\"", "");
+//
+//                    if (line.startsWith(KOD_IP_DROP_TYPE)) {
+//                        currentChannel.put("channelDrmType", line.split(KOD_IP_DROP_TYPE)[1].trim());
+//
+//                    }else if (line.startsWith(KOD_IP_DROP_KEY)) {
+//                        currentChannel.put("channelDrmKey", line.split(KOD_IP_DROP_KEY)[1].trim());
+//
+//                    } else if (line.startsWith(EXT_INF_SP)) {
+//                        String[] parts = line.split(COMMA, 2);
+//                        if (parts.length > 1) {
+//                            String name = parts[1];
+//                            if (name.contains(TVG_NAME)) {
+//                                name = name.split(TVG_NAME)[1].split(TVG_LOGO)[0];
+//                            }
+//                            currentChannel.put("name", name);
+//                        }
+//
+//                        if (line.contains(GROUP_TITLE)) {
+//                            String groupTitle = line.split(GROUP_TITLE)[1].split(COMMA)[0];
+//                            currentChannel.put("channelGroup", groupTitle);
+//                        }
+//
+//
+//
+//                        if (line.contains(TVG_LOGO)) {
+//                            String logo = line.split(TVG_LOGO)[1].split(COMMA)[0];
+//                            currentChannel.put("logo", logo);
+//                        }
+//                    }
+//                    else if (line.startsWith(HTTP) || line.startsWith(HTTPS)) {
+//                        currentChannel.put("url", line);
+//                        channels.add(currentChannel);
+//                        currentChannel = new HashMap<>();
+//                    }
+//
+//
+//                }
+//
+//                reader.close();
+//                conn.disconnect();
+//
+//            } catch (IOException e) {
+//                Timber.e(e);
+//                Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            return channels;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(List<Map<String, String>> channels) {
+//
+//            for (Map<String, String> channel : channels) {
+//                String name = channel.get("name");
+//                String channelGroup = channel.get("channelGroup");
+//                String logo = channel.get("logo");
+//                String url = channel.get("url");
+//                String channelDrmType = channel.get("channelDrmType");
+//                String channelDrmKey = channel.get("channelDrmKey");
+//
+//                new dbmanager(getContext()).addRecord(name,logo,url);
+//
+//     //           Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
+////
+////                Toast.makeText(getContext(), res, Toast.LENGTH_SHORT).show();
+//            }
+//
+//
+//
+//        }
+//    }
 
 }
