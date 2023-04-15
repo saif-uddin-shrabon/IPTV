@@ -11,12 +11,14 @@
         android:layout_height="match_parent">
 
         <ImageView
+
             android:layout_weight="1"
             android:id="@+id/viewImage"
             android:scaleType="centerInside"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
+
         <TextView
             android:maxLines="1"
             android:layout_weight="2"

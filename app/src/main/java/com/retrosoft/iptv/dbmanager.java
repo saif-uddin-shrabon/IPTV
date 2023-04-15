@@ -9,9 +9,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.util.List;
+
 public class dbmanager extends SQLiteOpenHelper {
 
-    private static final String dbname="channels.db";
+    private static final String dbname="channelList.db";
     private static final String dbtable="ChannelList";
 
 
@@ -25,6 +27,7 @@ public class dbmanager extends SQLiteOpenHelper {
         super(context, dbname, null, 1);
         this.context = context;
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -78,10 +81,18 @@ public class dbmanager extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+//    public  Cursor readColumData(){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String[] columns = new String[] {COLUMN_LINK};
+//        String orderBy = COLUMN_ID + " ASC";
+//        return db.query(dbtable, columns, null, null, null, null, orderBy);
+//    }
+
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(dbtable, null, null);
         Toast.makeText(context, "All data deleted successfully", Toast.LENGTH_SHORT).show();
     }
+
 
 }
