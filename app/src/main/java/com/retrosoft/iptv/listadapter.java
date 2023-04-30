@@ -2,11 +2,15 @@ package com.retrosoft.iptv;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +52,52 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
 
                 }
             });
+
+        holder.viewLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                popupMenu.getMenuInflater().inflate(R.menu.context_menu, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.option1:
+                                // Handle option 1 click
+                                new dbmanagert((v.getContext())).deleteAllData();
+                                // Get the cursor for the current position
+//                                Cursor cursor = new dbmanagert(v.getContext()).readAllData();
+//                                if (cursor.moveToFirst()) {
+//                                    // Get the COLUMN_ID value for the current row
+//                                    int idToDelete = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+//
+//                                    boolean success = new dbmanagert(v.getContext()).deleteRecord(idToDelete);
+//                                    if (success) {
+//                                        // Remove the item from your data list and refresh the RecyclerView
+//                                        Toast.makeText(v.getContext(), "Delete list", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+
+
+
+                                return true;
+//                            case R.id.option2:
+//                                // Handle option 2 click
+//                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+
+                popupMenu.show();
+                return true;
+            }
+        });
+
+
+
 
     }
 

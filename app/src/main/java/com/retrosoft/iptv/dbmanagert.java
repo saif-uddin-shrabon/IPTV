@@ -86,6 +86,18 @@ public class dbmanagert extends SQLiteOpenHelper {
         db.delete(dbtable, null, null);
         Toast.makeText(context, "All data deleted successfully", Toast.LENGTH_SHORT).show();
     }
+    public boolean deleteRecord(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(dbtable, COLUMN_ID + "=?", new String[]{String.valueOf(id)});
+        if (result == 0) {
+            Toast.makeText(context, "Failed to delete record", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            Toast.makeText(context, "Record deleted successfully", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+    }
+
 
     /*
     public dbmanagert(@Nullable Context context) {
