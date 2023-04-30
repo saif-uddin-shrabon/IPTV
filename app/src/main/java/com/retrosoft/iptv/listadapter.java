@@ -2,11 +2,15 @@ package com.retrosoft.iptv;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,52 +39,6 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
     @Override
     public void onBindViewHolder(@NonNull listadapter.myviewholder holder, int position) {
 
-//        holder.Llink.setText(dataholder.get(position).getCOLUMN_LINK());
-//        holder.cName.setText(dataholder.get(position).getCOLUMN_NAME());
-//
-//
-//
-////        holder.viewLayout.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-//////                Context context = v.getContext();
-//////                Intent intent = new Intent(context, Player_Fragment.class);
-////                String link = dataholder.get(position).getCOLUMN_LINK();
-////                new Player_Fragment().saveList(link);
-//////                new Player_Fragment().new GetChannelsTask() {
-//////                    @Override
-//////                    protected void onPostExecute(List<Map<String, String>> channels) {
-//////                        // pass the link and channels data to the Player activity
-//////                        intent.putExtra("link", link);
-//////                       intent.putExtra("channels", (Serializable) channels);
-//////                        context.startActivity(intent);
-//////                    }
-//////                }.execute(link);
-////            }
-////        });
-//
-//        holder.viewLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String link = dataholder.get(position).getCOLUMN_LINK();
-//
-//                // Create a bundle to pass the link to the Player_Fragment
-//                Bundle bundle = new Bundle();
-//                bundle.putString("link", link);
-//
-// //                Create an instance of the Player_Fragment and set the bundle
-//                Player_Fragment playerFragment = new Player_Fragment();
-//                playerFragment.setArguments(bundle);
-//                playerFragment.saveList();
-//
-//                // Replace the current fragment with the Player_Fragment
-////                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-////                transaction.replace(R.id.fragment_container, playerFragment);
-////                transaction.addToBackStack(null);
-////                transaction.commit();
-//            }
-//        });
-
 
             holder.Llink.setText(dataholder.get(position).getCOLUMN_LINK());
             holder.cName.setText(dataholder.get(position).getCOLUMN_NAME());
@@ -94,6 +52,52 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
 
                 }
             });
+
+        holder.viewLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                popupMenu.getMenuInflater().inflate(R.menu.context_menu, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.option1:
+                                // Handle option 1 click
+                                new dbmanagert((v.getContext())).deleteAllData();
+                                // Get the cursor for the current position
+//                                Cursor cursor = new dbmanagert(v.getContext()).readAllData();
+//                                if (cursor.moveToFirst()) {
+//                                    // Get the COLUMN_ID value for the current row
+//                                    int idToDelete = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+//
+//                                    boolean success = new dbmanagert(v.getContext()).deleteRecord(idToDelete);
+//                                    if (success) {
+//                                        // Remove the item from your data list and refresh the RecyclerView
+//                                        Toast.makeText(v.getContext(), "Delete list", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+
+
+
+                                return true;
+//                            case R.id.option2:
+//                                // Handle option 2 click
+//                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+
+                popupMenu.show();
+                return true;
+            }
+        });
+
+
+
 
     }
 

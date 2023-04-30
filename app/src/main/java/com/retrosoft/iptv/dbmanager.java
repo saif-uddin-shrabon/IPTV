@@ -21,6 +21,7 @@ public class dbmanager extends SQLiteOpenHelper {
     private static final String COLUMN_NAME="name";
     private static final String COLUMN_LOGO="logo";
     private static final String COLUMN_LINK="url";
+    private static final String COLUMN_fvrt="fvrt";
     private Context context;
 
     public dbmanager(@Nullable Context context) {
