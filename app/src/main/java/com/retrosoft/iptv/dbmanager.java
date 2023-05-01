@@ -21,7 +21,7 @@ public class dbmanager extends SQLiteOpenHelper {
     private static final String COLUMN_NAME="name";
     private static final String COLUMN_LOGO="logo";
     private static final String COLUMN_LINK="url";
-    private static final String COLUMN_fvrt="fvrt";
+    private static final String COLUMN_fvrt="favourit";
     private Context context;
 
     public dbmanager(@Nullable Context context) {
@@ -37,7 +37,9 @@ public class dbmanager extends SQLiteOpenHelper {
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
                 + COLUMN_NAME + " TEXT,"
                 + COLUMN_LOGO + " TEXT,"
-                + COLUMN_LINK + " TEXT);";
+                + COLUMN_LINK + " TEXT,"
+                + COLUMN_fvrt + " TEXT DEFAULT 'f'"
+                + ");";
 
         try {
             db.execSQL(query);
@@ -66,6 +68,7 @@ public class dbmanager extends SQLiteOpenHelper {
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_LOGO, logo);
         cv.put(COLUMN_LINK, link);
+        cv.put(COLUMN_fvrt, "f");
         long result = db.insert(dbtable, null, cv);
         if (result == -1) {
             Toast.makeText(context, "Failed to insert record", Toast.LENGTH_SHORT).show();
@@ -88,6 +91,21 @@ public class dbmanager extends SQLiteOpenHelper {
 //        String orderBy = COLUMN_ID + " ASC";
 //        return db.query(dbtable, columns, null, null, null, null, orderBy);
 //    }
+
+    public boolean updateFavoriteStatus(int isFavorite) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_fvrt, "t");
+        int rowsAffected = db.update(dbtable, cv, COLUMN_ID + "=?",  new String[]{String.valueOf(isFavorite)});
+        if (rowsAffected > 0) {
+            Toast.makeText(context, "Record updated successfully", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(context, "Failed to update record", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
 
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();

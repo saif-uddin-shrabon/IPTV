@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,10 +42,52 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
-        holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
+       // holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
+        holder.cname.setText(dataholder.get(position).getCOLUMN_fvrt());
 //        String firstChar = String.valueOf(dataholder.get(position).getCOLUMN_NAME().charAt(0)).trim();
 //        holder.logoName.setText(firstChar);
 //        Glide.with(holder.clogo.getContext()).load(dataholder.get(position).getCOLUMN_LOGO()).into(holder.clogo);
+
+
+        holder.viewLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                popupMenu.getMenuInflater().inflate(R.menu.fav_manue, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.option1:
+                                // Handle option 1 click
+
+                                new dbmanager(v.getContext()).updateFavoriteStatus(position);
+//                                 Get the cursor for the current position
+
+                                int isFavorite = Integer.parseInt(dataholder.get(position).getCOLUMN_ID());
+                                boolean success = new dbmanager(v.getContext()).updateFavoriteStatus(isFavorite);
+                                if (success) {
+                                    // Remove the item from your data list and refresh the RecyclerView
+                                    Toast.makeText(v.getContext(), "Delete list", Toast.LENGTH_SHORT).show();
+                                }
+
+
+                                return true;
+//                            case R.id.option2:
+//                                // Handle option 2 click
+//                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+
+                popupMenu.show();
+                return true;
+            }
+        });
+
 
         Glide.with(holder.clogo.getContext())
                 .load(dataholder.get(position).getCOLUMN_LOGO())
