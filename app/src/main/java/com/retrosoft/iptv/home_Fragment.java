@@ -36,7 +36,7 @@ public class home_Fragment extends Fragment {
         dataholder = new ArrayList<>(); // Initialize the ArrayList before adding data to it
 
         while (cursor.moveToNext()){
-            model obj =  new model(cursor.getString(1),cursor.getString(2),cursor.getString(3));
+            model obj =  new model(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(0));
             dataholder.add(obj);
         }
 

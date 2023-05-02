@@ -101,7 +101,7 @@ public class Player_Fragment extends Fragment {
         dataholder = new ArrayList<TableName>(); // Initialize the ArrayList before adding data to it
 
         while (cursor.moveToNext()){
-            TableName obj =  new TableName(cursor.getString(1),cursor.getString(2));
+            TableName obj =  new TableName(cursor.getString(1),cursor.getString(2),cursor.getString(0));
             dataholder.add(obj);
         }
         listadapter adapter = new listadapter(dataholder);

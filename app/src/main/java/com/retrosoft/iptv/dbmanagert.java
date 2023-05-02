@@ -81,11 +81,11 @@ public class dbmanagert extends SQLiteOpenHelper {
     }
 
 
-    public void deleteAllData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(dbtable, null, null);
-        Toast.makeText(context, "All data deleted successfully", Toast.LENGTH_SHORT).show();
-    }
+//    public void deleteAllData() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.delete(dbtable, null, null);
+//        Toast.makeText(context, "All data deleted successfully", Toast.LENGTH_SHORT).show();
+//    }
     public boolean deleteRecord(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         int result = db.delete(dbtable, COLUMN_ID + "=?", new String[]{String.valueOf(id)});

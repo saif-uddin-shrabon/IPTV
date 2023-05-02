@@ -65,20 +65,16 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
                         switch (item.getItemId()) {
                             case R.id.option1:
                                 // Handle option 1 click
-                                new dbmanagert((v.getContext())).deleteAllData();
+                            //    new dbmanagert((v.getContext())).deleteAllData();
+                                new dbmanagert(v.getContext()).deleteRecord(position);
                                 // Get the cursor for the current position
-//                                Cursor cursor = new dbmanagert(v.getContext()).readAllData();
-//                                if (cursor.moveToFirst()) {
-//                                    // Get the COLUMN_ID value for the current row
-//                                    int idToDelete = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
-//
-//                                    boolean success = new dbmanagert(v.getContext()).deleteRecord(idToDelete);
-//                                    if (success) {
-//                                        // Remove the item from your data list and refresh the RecyclerView
-//                                        Toast.makeText(v.getContext(), "Delete list", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }
-
+                                // Handle option 1 click
+                                int idToDelete = Integer.parseInt(dataholder.get(position).getCOLUMN_ID());
+                                boolean success = new dbmanagert(v.getContext()).deleteRecord(idToDelete);
+                                if (success) {
+                                    // Remove the item from your data list and refresh the RecyclerView
+                                    Toast.makeText(v.getContext(), "Delete list", Toast.LENGTH_SHORT).show();
+                                }
 
 
                                 return true;
