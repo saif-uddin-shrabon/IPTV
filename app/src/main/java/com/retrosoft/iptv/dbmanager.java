@@ -85,18 +85,33 @@ public class dbmanager extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
-//    public  Cursor readColumData(){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        String[] columns = new String[] {COLUMN_LINK};
-//        String orderBy = COLUMN_ID + " ASC";
-//        return db.query(dbtable, columns, null, null, null, null, orderBy);
-//    }
+    public Cursor readAllFavData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + dbtable + " WHERE " + COLUMN_fvrt + "='t'";
+        return db.rawQuery(query, null);
+    }
+
+
 
     public boolean updateFavoriteStatus(int isFavorite) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_fvrt, "t");
         int rowsAffected = db.update(dbtable, cv, COLUMN_ID + "=?",  new String[]{String.valueOf(isFavorite)});
+        if (rowsAffected > 0) {
+            Toast.makeText(context, "Record updated successfully", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(context, "Failed to update record", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    public boolean RemoveFavorite(int isNotFavorite) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_fvrt, "f");
+        int rowsAffected = db.update(dbtable, cv, COLUMN_ID + "=?",  new String[]{String.valueOf(isNotFavorite)});
         if (rowsAffected > 0) {
             Toast.makeText(context, "Record updated successfully", Toast.LENGTH_SHORT).show();
             return true;

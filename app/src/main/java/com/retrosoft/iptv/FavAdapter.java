@@ -25,25 +25,25 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
-public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
+public class FavAdapter extends RecyclerView.Adapter<FavAdapter.myviewholder> {
 
     ArrayList<model> dataholder;
 
-    public myadapter(ArrayList<model> dataholder){
+    public FavAdapter(ArrayList<model> dataholder){
         this.dataholder = dataholder;
     }
     @NonNull
     @Override
-    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavAdapter.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card,parent,false);
-        return new myviewholder(view);
+        return new FavAdapter.myviewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
+    public void onBindViewHolder(@NonNull FavAdapter.myviewholder holder, int position) {
 
-        holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
-    //    holder.cname.setText(dataholder.get(position).getCOLUMN_fvrt());
+        // holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
+        holder.cname.setText(dataholder.get(position).getCOLUMN_fvrt());
 //        String firstChar = String.valueOf(dataholder.get(position).getCOLUMN_NAME().charAt(0)).trim();
 //        holder.logoName.setText(firstChar);
 //        Glide.with(holder.clogo.getContext()).load(dataholder.get(position).getCOLUMN_LOGO()).into(holder.clogo);
@@ -61,22 +61,21 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
                         switch (item.getItemId()) {
                             case R.id.option1:
                                 // Handle option 1 click
-
-                                new dbmanager(v.getContext()).updateFavoriteStatus(position);
-//                                 Get the cursor for the current position
-
-                                int isFavorite = Integer.parseInt(dataholder.get(position).getCOLUMN_ID());
-                                boolean success = new dbmanager(v.getContext()).updateFavoriteStatus(isFavorite);
-                                if (success) {
-                                    // Remove the item from your data list and refresh the RecyclerView
-                                    Toast.makeText(v.getContext(), "Added to Favourit List", Toast.LENGTH_SHORT).show();
-                                }
+                                Toast.makeText(v.getContext(), "Already added to favorites list", Toast.LENGTH_SHORT).show();
 
 
                                 return true;
                             case R.id.option2:
                                 // Handle option 2 click
-                                Toast.makeText(v.getContext(), "Already added to the disliked list", Toast.LENGTH_SHORT).show();
+                                new dbmanager(v.getContext()).RemoveFavorite(position);
+//                                 Get the cursor for the current position
+
+                                int isNotFavorite = Integer.parseInt(dataholder.get(position).getCOLUMN_ID());
+                                boolean success = new dbmanager(v.getContext()).RemoveFavorite(isNotFavorite);
+                                if (success) {
+                                    // Remove the item from your data list and refresh the RecyclerView
+                                    Toast.makeText(v.getContext(), "Remove Favorite List", Toast.LENGTH_SHORT).show();
+                                }
                                 return true;
                             default:
                                 return false;
@@ -93,7 +92,6 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
         Glide.with(holder.clogo.getContext())
                 .load(dataholder.get(position).getCOLUMN_LOGO())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .skipMemoryCache(true)
                 .placeholder(R.drawable.cnlloading)
                 .error(R.drawable.cnlloading)
                 .listener(new RequestListener<Drawable>() {
@@ -109,7 +107,6 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
                         return false;
                     }
                 })
-                .timeout(60000) // 10 seconds timeout
                 .into(holder.clogo);
 
 
@@ -157,4 +154,5 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
         }
     }
 }
+
 
