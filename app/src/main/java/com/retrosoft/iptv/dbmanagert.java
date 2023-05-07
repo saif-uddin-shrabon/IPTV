@@ -69,7 +69,7 @@ public class dbmanagert extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed to insert record", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-            Toast.makeText(context, "Record inserted successfully", Toast.LENGTH_SHORT).show();
+
             return true;
         }
     }
@@ -93,7 +93,7 @@ public class dbmanagert extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed to delete record", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-            Toast.makeText(context, "Record deleted successfully", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Record deleted successfully", Toast.LENGTH_SHORT).show();
             return true;
         }
     }

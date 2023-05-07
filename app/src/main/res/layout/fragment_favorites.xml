@@ -9,6 +9,25 @@
 
     >
 
+    <LinearLayout
+        android:layout_weight="6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SearchView
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/search_custom_style"
+            android:searchIcon="@drawable/search_icon"/>
+
+
+
+
+    </LinearLayout>
+
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
@@ -78,6 +97,7 @@
             >
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_margin="10dp"
+                android:paddingBottom="60dp"
                 android:id="@+id/favrecview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
