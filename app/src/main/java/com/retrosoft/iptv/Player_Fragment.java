@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,15 +37,14 @@ public class Player_Fragment extends Fragment {
 
     EditText inputUrl,inputRfrl;
     Button btnPlay,btnDelete;
-
     Dialog myDialog;
-
     FloatingActionButton floatingActionButton;
-
-
     RecyclerView recyclerView;
     ArrayList<TableName> dataholder;
     String Url;
+
+    public static String triger = "";
+
 
 
     @Override
@@ -54,43 +54,12 @@ public class Player_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_player, container, false);
         floatingActionButton = view.findViewById(R.id.flotingBtn);
 
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myDialog = new Dialog(getActivity());
-                myDialog.setContentView(R.layout.link_gateway);
-                btnPlay = myDialog.findViewById(R.id.playerbtn);
-                inputUrl = myDialog.findViewById(R.id.url);
-                inputRfrl = myDialog.findViewById(R.id.channelrf);
-                btnDelete = myDialog.findViewById(R.id.delete_all);
-                btnPlay.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Url = inputUrl.getText().toString().trim();
-                       String channelName = inputRfrl.getText().toString();
-
-                       // link and channel name store database
-                        new dbmanagert(getContext()).addRecord(channelName,Url);
-
-                        // link extraction database
-                        new GetChannelsTask(getContext()).execute(Url);
-                    }
-                });
-
-
-
-                btnDelete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new dbmanager((getContext())).deleteAllData();
-//                        new dbmanagert((getContext())).deleteAllData();
-                    }
-                });
-                myDialog.show();
+               addChannle();
             }
         });
-
 
 
         recyclerView = view.findViewById(R.id.listview);
@@ -108,6 +77,56 @@ public class Player_Fragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+
+    public void addChannle(){
+
+        myDialog = new Dialog(getActivity());
+        myDialog.setContentView(R.layout.link_gateway);
+        btnPlay = myDialog.findViewById(R.id.playerbtn);
+        inputUrl = myDialog.findViewById(R.id.url);
+        inputRfrl = myDialog.findViewById(R.id.channelrf);
+        btnDelete = myDialog.findViewById(R.id.delete_all);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Url = inputUrl.getText().toString().trim();
+                String channelName = inputRfrl.getText().toString();
+
+                // link and channel name store database
+                new dbmanagert(getContext()).addRecord(channelName,Url);
+
+                // link extraction database
+                new GetChannelsTask(getContext()).execute(Url);
+
+                myDialog.dismiss();
+                ////For reload the page
+                refresh();
+            }
+        });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new dbmanager((getContext())).deleteAllData();
+                ////For reload the page
+                refresh();
+            }
+        });
+        myDialog.show();
+
+    }
+
+
+    public void refresh(){
+        ////For reload the page
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getFragmentManager().beginTransaction().detach(Player_Fragment.this).commitNow();
+            getFragmentManager().beginTransaction().attach(Player_Fragment.this).commitNow();
+        } else {
+            getFragmentManager().beginTransaction().detach(Player_Fragment.this).attach(Player_Fragment.this).commit();
+        }
     }
 
 }

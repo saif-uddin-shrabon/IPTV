@@ -40,8 +40,8 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
     public void onBindViewHolder(@NonNull listadapter.myviewholder holder, int position) {
 
 
-            holder.Llink.setText(dataholder.get(position).getCOLUMN_LINK());
-            holder.cName.setText(dataholder.get(position).getCOLUMN_NAME());
+            holder.Llink.setText("Link : "+dataholder.get(position).getCOLUMN_LINK());
+            holder.cName.setText("Referrer : "+dataholder.get(position).getCOLUMN_NAME());
 
             holder.viewLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -64,11 +64,7 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.option1:
-                                // Handle option 1 click
-                            //    new dbmanagert((v.getContext())).deleteAllData();
                                 new dbmanagert(v.getContext()).deleteRecord(position);
-                                // Get the cursor for the current position
-                                // Handle option 1 click
                                 int idToDelete = Integer.parseInt(dataholder.get(position).getCOLUMN_ID());
                                 boolean success = new dbmanagert(v.getContext()).deleteRecord(idToDelete);
                                 if (success) {
@@ -78,9 +74,6 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
 
 
                                 return true;
-//                            case R.id.option2:
-//                                // Handle option 2 click
-//                                return true;
                             default:
                                 return false;
                         }

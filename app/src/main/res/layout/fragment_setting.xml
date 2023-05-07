@@ -17,269 +17,274 @@
         android:textSize="18dp"
         android:textStyle="bold"
         android:layout_marginLeft="30dp"/>
+
     <LinearLayout
-        android:layout_weight="1"
         android:background="@drawable/back_colour_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-
-
-
+        android:paddingBottom="60dp"
         >
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="GENERAL"
+        <ScrollView
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            />
-       <View
-           android:layout_marginTop="5dp"
-           android:layout_marginLeft="20dp"
-           android:layout_marginRight="20dp"
-           android:layout_width="wrap_content"
-           android:layout_height="1dp"
-           android:background="@color/white"
-           />
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/setting_tab_style"
-            android:gravity="center_vertical"
-            >
-
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/email_icon"
-                >
-
-            </ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Contact us"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/setting_tab_style"
-            android:gravity="center_vertical"
-            >
-
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/twiter_logo"
-                >
-
-            </ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="\@playertvappe"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/setting_tab_style"
-            android:gravity="center_vertical"
-            >
-
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/link_icon"
-                >
-
-            </ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="URL Schemes"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/setting_tab_style"
-            android:gravity="center_vertical"
-            >
-
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/dnd_icon"
-                >
-
-            </ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Annoying ads"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/setting_tab_style"
-            android:gravity="center_vertical"
-            >
-
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/question_icon"
-                >
-
-            </ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Help"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/setting_tab_style"
-            android:gravity="center_vertical"
-            >
-
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/about_icon"
-                >
-
-            </ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="About PlayerTV"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-
-
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Player Settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            />
-        <View
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:background="@color/white"
-            />
-
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:background="@drawable/setting_tab_style"
-            android:gravity="center_vertical"
-            >
-
-
+            android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/back_colour_fragment"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 >
-
                 <TextView
                     android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Background Playback"
+                    android:layout_marginLeft="20dp"
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/white"
+                    android:text="GENERAL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    />
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_tab_style"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/email_icon"
+                        >
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Contact us"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_tab_style"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/twiter_logo"
+                        >
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="\@playertvappe"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_tab_style"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/link_icon"
+                        >
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="URL Schemes"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_tab_style"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/dnd_icon"
+                        >
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Annoying ads"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_tab_style"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/question_icon"
+                        >
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Help"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_tab_style"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/about_icon"
+                        >
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="About PlayerTV"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+
+
+
                 <TextView
                     android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="20dp"
                     android:textColor="@color/white"
-                    android:text="Allows continue playing audio when app\n gose into backgrounf."
-                    android:textSize="15dp"
+                    android:text="Player Settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
                     />
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    />
+
+                <LinearLayout
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:background="@drawable/setting_tab_style"
+                    android:gravity="center_vertical"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="Background Playback"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="Allows continue playing audio when app\n gose into backgrounf."
+                            android:textSize="15dp"
+                            />
+                    </LinearLayout>
+
+                    <Switch
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"/>
+                </LinearLayout>
+
             </LinearLayout>
-
-            <Switch
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"/>
-        </LinearLayout>
-
-
-
-
-
-
-
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>

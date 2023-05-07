@@ -74,7 +74,7 @@ public class dbmanager extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed to insert record", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-            Toast.makeText(context, "Record inserted successfully", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Record inserted successfully", Toast.LENGTH_SHORT).show();
             return true;
         }
     }

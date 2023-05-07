@@ -27,7 +27,7 @@ public class Favorites_Fragment extends Fragment {
 
 
         recyclerView = view.findViewById(R.id.favrecview);
-        int numberOfColumns = 4;
+        int numberOfColumns = 2;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),numberOfColumns));
 
         Cursor cursor = new dbmanager(getContext()).readAllFavData();
