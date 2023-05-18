@@ -1,7 +1,11 @@
 package com.retrosoft.iptv;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -26,6 +30,7 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
     private final String COMMA = ",";
     private final String HTTP = "http://";
     private final String HTTPS = "https://";
+    String urlString;
 
     private Context mContext;
 
@@ -35,7 +40,7 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
 
     @Override
     protected List<Map<String, String>> doInBackground(String... urls) {
-        String urlString = urls[0];
+         urlString = urls[0];
         List<Map<String, String>> channels = new ArrayList<>();
         Map<String, String> currentChannel = new HashMap<>();
 
@@ -95,7 +100,25 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
 
         } catch (IOException e) {
             Timber.e(e);
-            Toast.makeText(mContext, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            ((Activity) mContext).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setTitle("Error Parsing")
+                            .setMessage("Please check you internet connection or your IPTV URL source provider")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Dismiss the dialog if needed or handle any other actions
+
+                                    dialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+            });
+
+            return null;
         }
 
         return channels;
@@ -104,20 +127,25 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
     @Override
     protected void onPostExecute(List<Map<String, String>> channels) {
 
-        for (Map<String, String> channel : channels) {
-            String name = channel.get("name");
-            String channelGroup = channel.get("channelGroup");
-            String logo = channel.get("logo");
-            String url = channel.get("url");
-            String channelDrmType = channel.get("channelDrmType");
-            String channelDrmKey = channel.get("channelDrmKey");
+        if (channels == null || channels.isEmpty()) {
+            return; // Stop execution if channels is null or empty
+        }
 
-            new dbmanager(mContext).addRecord(name,logo,url);
+            for (Map<String, String> channel : channels) {
+                String name = channel.get("name");
+                String channelGroup = channel.get("channelGroup");
+                String logo = channel.get("logo");
+                String url = channel.get("url");
+                String channelDrmType = channel.get("channelDrmType");
+                String channelDrmKey = channel.get("channelDrmKey");
 
-            //           Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
+                new dbmanager(mContext).addRecord(name, logo, url, urlString);
+
+                Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
 //
 //                Toast.makeText(getContext(), res, Toast.LENGTH_SHORT).show();
-        }
+            }
+
 
 
 

@@ -42,11 +42,9 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.myviewholder> {
     @Override
     public void onBindViewHolder(@NonNull FavAdapter.myviewholder holder, int position) {
 
-        // holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
-        holder.cname.setText(dataholder.get(position).getCOLUMN_fvrt());
-//        String firstChar = String.valueOf(dataholder.get(position).getCOLUMN_NAME().charAt(0)).trim();
-//        holder.logoName.setText(firstChar);
-//        Glide.with(holder.clogo.getContext()).load(dataholder.get(position).getCOLUMN_LOGO()).into(holder.clogo);
+
+       holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
+
 
 
         holder.viewLayout.setOnLongClickListener(new View.OnLongClickListener() {
@@ -61,7 +59,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.myviewholder> {
                         switch (item.getItemId()) {
                             case R.id.option1:
                                 // Handle option 1 click
-                                Toast.makeText(v.getContext(), "Already added to favorites list", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(v.getContext(), "Already added to favorites list", Toast.LENGTH_SHORT).show();
 
 
                                 return true;
@@ -72,10 +70,10 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.myviewholder> {
 
                                 int isNotFavorite = Integer.parseInt(dataholder.get(position).getCOLUMN_ID());
                                 boolean success = new dbmanager(v.getContext()).RemoveFavorite(isNotFavorite);
-                                if (success) {
-                                    // Remove the item from your data list and refresh the RecyclerView
-                                    Toast.makeText(v.getContext(), "Remove Favorite List", Toast.LENGTH_SHORT).show();
-                                }
+//                                if (success) {
+//                                    // Remove the item from your data list and refresh the RecyclerView
+//                                    Toast.makeText(v.getContext(), "Remove Favorite List", Toast.LENGTH_SHORT).show();
+//                                }
                                 return true;
                             default:
                                 return false;

@@ -64,9 +64,14 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.option1:
-                                new dbmanagert(v.getContext()).deleteRecord(position);
+
+                                String linkdelete = dataholder.get(position).getCOLUMN_LINK();
+                                new dbmanager(v.getContext()).deleteAllData(linkdelete);
+
                                 int idToDelete = Integer.parseInt(dataholder.get(position).getCOLUMN_ID());
                                 boolean success = new dbmanagert(v.getContext()).deleteRecord(idToDelete);
+
+//                               new Player_Fragment().loadData();
                                 if (success) {
                                     // Remove the item from your data list and refresh the RecyclerView
                                     Toast.makeText(v.getContext(), "Delete list", Toast.LENGTH_SHORT).show();
@@ -93,6 +98,10 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
     @Override
     public int getItemCount() {
         return dataholder.size();
+    }
+
+    public interface OnDataChangedListener {
+        void onDataChanged();
     }
 
     class myviewholder extends RecyclerView.ViewHolder{

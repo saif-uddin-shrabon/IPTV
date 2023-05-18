@@ -41,37 +41,11 @@ public class home_Fragment extends Fragment {
         }
 
         myadapter adapter= new myadapter(dataholder);
+
         recyclerView.setAdapter(adapter);
-
-
-//        btn1 = view.findViewById(R.id.cnl1);
-//        btn2 = view.findViewById(R.id.cnl2);
-
-//        btn1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                go("https://v4.tustreaming.cl/tevexinter/index.m3u8");
-//
-//            }
-//        });
-//        btn2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                go("https://ndtvprofitelemarchana.akamaized.net/hls/live/2003680-b/ndtvprofit/master.m3u8");
-//
-//            }
-//        });
-
+        recyclerView.getAdapter().notifyDataSetChanged();
         return view;
     }
 
-//    private void go(String url){
-//
-//
-//        Player.websiteUri = url;
-//        startActivity(new Intent(getContext(),Player.class));
-//
-//    }
+
 }

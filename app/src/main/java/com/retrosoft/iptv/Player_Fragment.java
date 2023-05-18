@@ -34,17 +34,22 @@ import timber.log.Timber;
 
 public class Player_Fragment extends Fragment {
 
-
+     public static  String channelName;
     EditText inputUrl,inputRfrl;
     Button btnPlay,btnDelete;
     Dialog myDialog;
     FloatingActionButton floatingActionButton;
     RecyclerView recyclerView;
-    ArrayList<TableName> dataholder;
+    static ArrayList<TableName> dataholder;
     String Url;
 
     public static String triger = "";
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 
 
     @Override
@@ -53,6 +58,9 @@ public class Player_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_player, container, false);
         floatingActionButton = view.findViewById(R.id.flotingBtn);
+        if (getContext() == null) {
+            return view;
+        }
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,9 +83,23 @@ public class Player_Fragment extends Fragment {
         }
         listadapter adapter = new listadapter(dataholder);
         recyclerView.setAdapter(adapter);
+        recyclerView.getAdapter().notifyDataSetChanged();
+
+
 
         return view;
     }
+//    public void loadData() {
+//        dataholder.clear(); // Clear the existing data in the ArrayList
+//        Cursor cursor = new dbmanagert(getContext()).readAllData();
+//
+//        while (cursor.moveToNext()) {
+//            TableName obj = new TableName(cursor.getString(1), cursor.getString(2), cursor.getString(0));
+//            dataholder.add(obj);
+//        }
+//
+//        recyclerView.getAdapter().notifyDataSetChanged();
+//    }
 
 
     public void addChannle(){
@@ -92,7 +114,7 @@ public class Player_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Url = inputUrl.getText().toString().trim();
-                String channelName = inputRfrl.getText().toString();
+                channelName = inputRfrl.getText().toString();
 
                 // link and channel name store database
                 new dbmanagert(getContext()).addRecord(channelName,Url);
@@ -102,18 +124,11 @@ public class Player_Fragment extends Fragment {
 
                 myDialog.dismiss();
                 ////For reload the page
-                refresh();
+//                refresh();
+              //  loadData(); // Refresh the RecyclerView data
             }
         });
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                new dbmanager((getContext())).deleteAllData();
-                ////For reload the page
-                refresh();
-            }
-        });
         myDialog.show();
 
     }
@@ -128,5 +143,9 @@ public class Player_Fragment extends Fragment {
             getFragmentManager().beginTransaction().detach(Player_Fragment.this).attach(Player_Fragment.this).commit();
         }
     }
+
+
+
+
 
 }

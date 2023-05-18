@@ -22,6 +22,7 @@ public class dbmanager extends SQLiteOpenHelper {
     private static final String COLUMN_LOGO="logo";
     private static final String COLUMN_LINK="url";
     private static final String COLUMN_fvrt="favourit";
+    private static final String COLUMN_ROOT_LINK = "RootLink"; // New column
     private Context context;
 
     public dbmanager(@Nullable Context context) {
@@ -38,7 +39,8 @@ public class dbmanager extends SQLiteOpenHelper {
                 + COLUMN_NAME + " TEXT,"
                 + COLUMN_LOGO + " TEXT,"
                 + COLUMN_LINK + " TEXT,"
-                + COLUMN_fvrt + " TEXT DEFAULT 'f'"
+                + COLUMN_fvrt + " TEXT DEFAULT 'f'," // Existing column
+                + COLUMN_ROOT_LINK + " TEXT" // New column
                 + ");";
 
         try {
@@ -62,19 +64,20 @@ public class dbmanager extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addRecord(String name, String logo, String link) {
+    public boolean addRecord(String name, String logo, String link, String rootLink) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_LOGO, logo);
         cv.put(COLUMN_LINK, link);
         cv.put(COLUMN_fvrt, "f");
+        cv.put(COLUMN_ROOT_LINK, rootLink); // New column value
         long result = db.insert(dbtable, null, cv);
         if (result == -1) {
             Toast.makeText(context, "Failed to insert record", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-//            Toast.makeText(context, "Record inserted successfully", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(context, "Record inserted successfully", Toast.LENGTH_SHORT).show();
             return true;
         }
     }
@@ -122,9 +125,9 @@ public class dbmanager extends SQLiteOpenHelper {
     }
 
 
-    public void deleteAllData() {
+    public void deleteAllData(String  linkdelete) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(dbtable, null, null);
+        db.delete(dbtable, COLUMN_ROOT_LINK + "=?", new String[]{String.valueOf(linkdelete)});
         Toast.makeText(context, "All data deleted successfully", Toast.LENGTH_SHORT).show();
     }
 
