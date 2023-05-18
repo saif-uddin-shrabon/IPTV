@@ -117,7 +117,7 @@ public class Player_Fragment extends Fragment {
                 channelName = inputRfrl.getText().toString();
 
                 // link and channel name store database
-                new dbmanagert(getContext()).addRecord(channelName,Url);
+           //     new dbmanagert(getContext()).addRecord(channelName,Url);
 
                 // link extraction database
                 new GetChannelsTask(getContext()).execute(Url);

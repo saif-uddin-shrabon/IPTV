@@ -130,6 +130,7 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
         if (channels == null || channels.isEmpty()) {
             return; // Stop execution if channels is null or empty
         }
+        new dbmanagert(mContext).addRecord(Player_Fragment.channelName,urlString);
 
             for (Map<String, String> channel : channels) {
                 String name = channel.get("name");
