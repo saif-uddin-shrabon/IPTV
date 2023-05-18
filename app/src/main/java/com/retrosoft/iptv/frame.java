@@ -63,7 +63,7 @@ public class frame extends AppCompatActivity {
                 btnPlay = myDialog.findViewById(R.id.playerbtn);
                 inputUrl = myDialog.findViewById(R.id.url);
                 inputRfrl = myDialog.findViewById(R.id.channelrf);
-                btnDelete = myDialog.findViewById(R.id.delete_all);
+//                btnDelete = myDialog.findViewById(R.id.delete_all);
                 btnPlay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -81,14 +81,14 @@ public class frame extends AppCompatActivity {
 
 
 
-                btnDelete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        new dbmanager((frame.this)).deleteAllData();
-
-                    }
-                });
+//                btnDelete.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        new dbmanager((frame.this)).deleteAllData();
+//
+//                    }
+//                });
                 myDialog.show();
 
 
