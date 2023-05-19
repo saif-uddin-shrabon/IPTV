@@ -1,6 +1,7 @@
 package com.retrosoft.iptv;
 
 import static com.retrosoft.iptv.Player_Fragment.channelName;
+import static com.retrosoft.iptv.Player_Fragment.isAdd;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -132,8 +133,11 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
         if (channels == null || channels.isEmpty()) {
             return; // Stop execution if channels is null or empty
         }
+        if (isAdd == true){
+            new dbmanagert(mContext).addRecord(channelName,urlString);
+        }
 
-        new dbmanagert(mContext).addRecord(channelName,urlString);
+
 
             for (Map<String, String> channel : channels) {
                 String name = channel.get("name");

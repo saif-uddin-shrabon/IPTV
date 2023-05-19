@@ -71,7 +71,7 @@ public class frame extends AppCompatActivity {
                         Url = inputUrl.getText().toString().trim();
                         Player_Fragment.channelName = inputRfrl.getText().toString();
 
-
+                       Player_Fragment.isAdd = true;
                         // link extraction database
                         new GetChannelsTask(frame.this).execute(Url);
                         myDialog.dismiss();
