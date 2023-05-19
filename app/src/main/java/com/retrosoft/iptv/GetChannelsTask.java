@@ -1,5 +1,7 @@
 package com.retrosoft.iptv;
 
+import static com.retrosoft.iptv.Player_Fragment.channelName;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -130,7 +132,8 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
         if (channels == null || channels.isEmpty()) {
             return; // Stop execution if channels is null or empty
         }
-        new dbmanagert(mContext).addRecord(Player_Fragment.channelName,urlString);
+
+        new dbmanagert(mContext).addRecord(channelName,urlString);
 
             for (Map<String, String> channel : channels) {
                 String name = channel.get("name");
@@ -142,7 +145,7 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
 
                 new dbmanager(mContext).addRecord(name, logo, url, urlString);
 
-                Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
+         //       Log.d("Channel", "Name: " + name + ", Logo: " + logo + ", URL: " + url + ", channelGroup: " +channelGroup + ", channelDrmType: "+ channelDrmType + ", channelDrmKey: "+channelDrmKey);
 //
 //                Toast.makeText(getContext(), res, Toast.LENGTH_SHORT).show();
             }
