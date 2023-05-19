@@ -32,6 +32,7 @@ public class frame extends AppCompatActivity {
     EditText inputUrl,inputRfrl;
     String Url;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +69,8 @@ public class frame extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Url = inputUrl.getText().toString().trim();
-                        String channelName = inputRfrl.getText().toString();
+                        Player_Fragment.channelName = inputRfrl.getText().toString();
 
-                        // link and channel name store database
-                        new dbmanagert(frame.this).addRecord(channelName,Url);
 
                         // link extraction database
                         new GetChannelsTask(frame.this).execute(Url);
@@ -81,14 +80,7 @@ public class frame extends AppCompatActivity {
 
 
 
-//                btnDelete.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        new dbmanager((frame.this)).deleteAllData();
-//
-//                    }
-//                });
+
                 myDialog.show();
 
 

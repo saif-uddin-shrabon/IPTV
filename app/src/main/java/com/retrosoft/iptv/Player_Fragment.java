@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -36,7 +37,7 @@ public class Player_Fragment extends Fragment {
 
      public static  String channelName;
     EditText inputUrl,inputRfrl;
-    Button btnPlay,btnDelete;
+    Button btnPlay;
     Dialog myDialog;
     FloatingActionButton floatingActionButton;
     RecyclerView recyclerView;
@@ -44,6 +45,8 @@ public class Player_Fragment extends Fragment {
     String Url;
 
     public static String triger = "";
+    SearchView searchView;
+    listadapter adapter;
 
     @Override
     public void onResume() {
@@ -70,6 +73,20 @@ public class Player_Fragment extends Fragment {
         });
 
 
+        searchView = view.findViewById(R.id.listSearch);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return false;
+            }
+        });
         recyclerView = view.findViewById(R.id.listview);
         int numberOfColumns = 1;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
@@ -81,25 +98,15 @@ public class Player_Fragment extends Fragment {
             TableName obj =  new TableName(cursor.getString(1),cursor.getString(2),cursor.getString(0));
             dataholder.add(obj);
         }
-        listadapter adapter = new listadapter(dataholder);
+        adapter = new listadapter(dataholder);
         recyclerView.setAdapter(adapter);
-        recyclerView.getAdapter().notifyDataSetChanged();
+
 
 
 
         return view;
     }
-//    public void loadData() {
-//        dataholder.clear(); // Clear the existing data in the ArrayList
-//        Cursor cursor = new dbmanagert(getContext()).readAllData();
-//
-//        while (cursor.moveToNext()) {
-//            TableName obj = new TableName(cursor.getString(1), cursor.getString(2), cursor.getString(0));
-//            dataholder.add(obj);
-//        }
-//
-//        recyclerView.getAdapter().notifyDataSetChanged();
-//    }
+
 
 
     public void addChannle(){
@@ -109,23 +116,19 @@ public class Player_Fragment extends Fragment {
         btnPlay = myDialog.findViewById(R.id.playerbtn);
         inputUrl = myDialog.findViewById(R.id.url);
         inputRfrl = myDialog.findViewById(R.id.channelrf);
-        btnDelete = myDialog.findViewById(R.id.delete_all);
+
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Url = inputUrl.getText().toString().trim();
                 channelName = inputRfrl.getText().toString();
 
-                // link and channel name store database
-           //     new dbmanagert(getContext()).addRecord(channelName,Url);
 
                 // link extraction database
                 new GetChannelsTask(getContext()).execute(Url);
 
                 myDialog.dismiss();
-                ////For reload the page
-//                refresh();
-              //  loadData(); // Refresh the RecyclerView data
+
             }
         });
 
@@ -145,7 +148,21 @@ public class Player_Fragment extends Fragment {
     }
 
 
+    private void filterList(String newText) {
+        List<TableName> filterdList = new ArrayList<>();
 
+        for (TableName item : dataholder){
+
+            if(item.getCOLUMN_NAME().toLowerCase().contains(newText.toLowerCase())){
+                filterdList.add(item);
+            }
+        }
+        if(filterdList.isEmpty()){
+            Toast.makeText(getContext(), "No data found", Toast.LENGTH_SHORT).show();
+        }else {
+            adapter.setfilter((ArrayList<TableName>) filterdList);
+        }
+    }
 
 
 }

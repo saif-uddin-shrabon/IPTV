@@ -29,6 +29,14 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
     public listadapter(ArrayList<TableName> dataholder){
         this.dataholder = dataholder;
     }
+
+
+    public  void  setfilter(ArrayList<TableName> filterdList){
+
+        this.dataholder = filterdList;
+
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public listadapter.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,8 +48,8 @@ public class listadapter extends RecyclerView.Adapter<listadapter.myviewholder> 
     public void onBindViewHolder(@NonNull listadapter.myviewholder holder, int position) {
 
 
-            holder.Llink.setText("Link : "+dataholder.get(position).getCOLUMN_LINK());
-            holder.cName.setText("Referrer : "+dataholder.get(position).getCOLUMN_NAME());
+            holder.Llink.setText(dataholder.get(position).getCOLUMN_LINK());
+            holder.cName.setText(dataholder.get(position).getCOLUMN_NAME());
 
             holder.viewLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

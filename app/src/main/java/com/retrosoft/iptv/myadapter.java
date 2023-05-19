@@ -22,16 +22,33 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Locale;
 
 public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
 
     ArrayList<model> dataholder;
 
+
     public myadapter(ArrayList<model> dataholder){
+
         this.dataholder = dataholder;
+
     }
+
+
+    public  void  filter(ArrayList<model> filterdList){
+
+              this.dataholder = filterdList;
+
+        notifyDataSetChanged();
+    }
+
+
+
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,13 +59,18 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
-        holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
+       // holder.cname.setText(filterdList.get(position).getCOUMN_NAME());
+        //Glide.with(holder.clogo.getContext()).load(filterdList.get(position).getCOLUMN_LOGO()).into(holder.clogo);
+
+
+
+      holder.cname.setText(dataholder.get(position).getCOLUMN_NAME());
     //    holder.cname.setText(dataholder.get(position).getCOLUMN_fvrt());
 //        String firstChar = String.valueOf(dataholder.get(position).getCOLUMN_NAME().charAt(0)).trim();
 //        holder.logoName.setText(firstChar);
 //        Glide.with(holder.clogo.getContext()).load(dataholder.get(position).getCOLUMN_LOGO()).into(holder.clogo);
 
-
+    //    model model = filterdList.get(position);
         holder.viewLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -137,6 +159,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
 
     @Override
     public int getItemCount() {
+//        return filterdList.size();
         return dataholder.size();
     }
 
