@@ -39,7 +39,7 @@ public class Player_Fragment extends Fragment {
     EditText inputUrl,inputRfrl;
     Button btnPlay;
     Dialog myDialog;
-    FloatingActionButton floatingActionButton;
+    FloatingActionButton floatingActionButton , downloadfloatingActionButton;
     RecyclerView recyclerView;
     static ArrayList<TableName> dataholder;
     String Url;
@@ -61,6 +61,8 @@ public class Player_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_player, container, false);
         floatingActionButton = view.findViewById(R.id.flotingBtn);
+        downloadfloatingActionButton = view.findViewById(R.id.downloadBtn);
+
         if (getContext() == null) {
             return view;
         }
@@ -69,6 +71,13 @@ public class Player_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                addChannle();
+            }
+        });
+
+        downloadfloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                download();
             }
         });
 
@@ -101,9 +110,6 @@ public class Player_Fragment extends Fragment {
         adapter = new listadapter(dataholder);
         recyclerView.setAdapter(adapter);
 
-
-
-
         return view;
     }
 
@@ -131,6 +137,14 @@ public class Player_Fragment extends Fragment {
 
             }
         });
+
+        myDialog.show();
+
+    }
+    public void download(){
+
+        myDialog = new Dialog(getActivity());
+        myDialog.setContentView(R.layout.download_gateway);
 
         myDialog.show();
 
