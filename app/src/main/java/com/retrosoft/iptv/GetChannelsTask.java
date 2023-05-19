@@ -134,9 +134,22 @@ public class GetChannelsTask extends AsyncTask<String, Void, List<Map<String, St
             return; // Stop execution if channels is null or empty
         }
         if (isAdd == true){
+
             new dbmanagert(mContext).addRecord(channelName,urlString);
         }
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Success")
+                .setMessage("Data Parsing Successful")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Dismiss the dialog if needed or handle any other actions
+
+                        dialog.dismiss();
+                    }
+                })
+                .show();
 
 
             for (Map<String, String> channel : channels) {
